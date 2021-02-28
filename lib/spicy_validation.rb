@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
+require "rails"
 require_relative "spicy_validation/version"
-
-module SpicyValidation
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "spicy_validation/railtie"
