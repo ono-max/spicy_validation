@@ -17,11 +17,11 @@ module SpicyValidation
       columns = columns.reject { |x| x.name.in? %w[id created_at updated_at] }
       columns.map do |column|
         options = {}
-        options[:presence] = true if column.null
+        options[:presence] = true unless column.null
         options[:numericality] = true if column.type == :integer
         options[:allow_nil] = true if column.null && (column.type == :integer)
         Validation.new(method_name: "validates", column_name: column.name.to_sym, options: options) if options.present?
-      end
+      end.compact
     end
 
     def self.unique_validations(table_name:)
