@@ -28,7 +28,7 @@ module SpicyValidation
     end
 
     def self.choose_table_name
-      puts "\e[33m[warning] If you generate validation, model files will be overwritten.\e[0m"
+      puts "\e[33m[warning] If you generate validation, model file will be overwritten.\e[0m"
       hash_tables = Schema.table_names.map.with_index { |table, index| [index.to_s.to_sym, table] }.to_h
       p hash_tables
       while true
