@@ -1,8 +1,8 @@
 # SpicyValidation
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/spicy_validation`. To experiment with that code, run `bin/console` for an interactive prompt.
+Generate validation methods automatically from database schema.
 
-TODO: Delete this and the text above, and describe your gem
+**[important notice]** Your model file will be overwritten!
 
 ## Installation
 
@@ -22,11 +22,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Run `validation:generate` task
+2. Type a number you would like to generate validation
+```shell
+% rails validation:generate
+[warning] If you generate validation, model files will be overwritten.
+{:"0"=>"samples", :"1"=>"users"}
+Type a number you wanna generate validation > ex) 0
+```
 
+## Example
+
+```ruby
+# db/migrate/20210227054155_create_users.rb
+class CreateUsers < ActiveRecord::Migration[6.1]
+  def change
+    create_table :users do |t|
+      t.string :name, null: false
+      t.string :message, null: true
+      t.integer :age, null: false
+      t.integer :score
+      t.boolean :premium
+      t.timestamps
+    end
+    add_index  :users, [:age, :name], unique: true
+  end
+end
+
+# app/models/user.rb
+class User < ApplicationRecord
+
+  validates :message, presence: true
+  validates :age, numericality: true
+  validates :score, presence: true, numericality: true, allow_nil: true
+  validates :premium, presence: true
+  validates_uniqueness_of :age, scope: :name
+end
+
+
+```
 ## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
@@ -41,3 +76,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the SpicyValidation project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/spicy_validation/blob/master/CODE_OF_CONDUCT.md).
+
+## Reference
+
+https://github.com/sinsoku/pretty_validation
