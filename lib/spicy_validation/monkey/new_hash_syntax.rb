@@ -2,7 +2,7 @@
 
 module NewHashSyntax
   refine Hash do
-    def to_s
+    def format
       map { |k, v| "#{k}: #{v.inspect}" }.join(", ")
     end
   end

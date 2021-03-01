@@ -19,4 +19,7 @@ Style/SoleNestedConditional:
   AllowModifier: true
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 22
+
+CyclomaticComplexity:
+  Max: 9
