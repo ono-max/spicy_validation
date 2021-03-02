@@ -11,3 +11,15 @@ Style/StringLiteralsInInterpolation:
 
 Layout/LineLength:
   Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/SoleNestedConditional:
+  AllowModifier: true
+
+Metrics/AbcSize:
+  Max: 22
+
+CyclomaticComplexity:
+  Max: 9
