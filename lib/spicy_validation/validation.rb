@@ -41,7 +41,7 @@ module SpicyValidation
       if options.blank?
         "#{method_name} #{column_name.inspect}"
       else
-        "#{method_name} #{column_name.inspect}, #{options.format}"
+        "#{method_name} #{column_name.inspect}, #{options.format_hash}"
       end
     end
   end
