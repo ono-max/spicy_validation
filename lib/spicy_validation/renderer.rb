@@ -69,7 +69,7 @@ module SpicyValidation
     end
 
     def model_path
-      File.join(Rails.root.glob("app/models/**/#{model_name.downcase}.rb"))
+      File.join(Rails.root.glob("app/models/**/#{model_name.underscore}.rb"))
     end
   end
 end
