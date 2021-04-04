@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "spicy_validation"
-
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
@@ -13,3 +12,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+require "active_record"
+
+require_relative "fake_app"
+require_relative "support/shared_contexts"
