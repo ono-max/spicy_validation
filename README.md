@@ -33,34 +33,30 @@ Type a number you wanna generate validation > ex) 0
 
 ## Example
 
-```ruby
-# db/migrate/20210227054155_create_users.rb
-class CreateUsers < ActiveRecord::Migration[6.1]
-  def change
-    create_table :users do |t|
-      t.string :name, null: false
-      t.string :message, null: true
-      t.integer :age, null: false
-      t.integer :score
-      t.boolean :premium
-      t.timestamps
-    end
-    add_index  :users, [:age, :name], unique: true
-  end
-end
+```sql
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | bigint(20)   | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(255) | NO   |     | NULL    |                |
+| message    | varchar(255) | YES  |     | NULL    |                |
+| age        | int(11)      | NO   |     | NULL    |                |
+| score      | int(11)      | YES  |     | NULL    |                |
+| premium    | tinyint(1)   | YES  |     | NULL    |                |
+| created_at | datetime(6)  | NO   |     | NULL    |                |
+| updated_at | datetime(6)  | NO   |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+```
 
+```ruby
 # app/models/user.rb
 class User < ApplicationRecord
-
-  validates :message, presence: true
-  validates :age, numericality: true
-  validates :score, presence: true, numericality: true, allow_nil: true
-  validates :premium, presence: true
-  validates_uniqueness_of :age, scope: :name
+  validates :name, presence: true
+  validates :age, presence: true, numericality: true
+  validates :score, numericality: true, allow_nil: true
 end
-
-
 ```
+
 ## Development
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
