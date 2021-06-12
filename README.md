@@ -75,4 +75,4 @@ Everyone interacting in the SpicyValidation project's codebases, issue trackers,
 
 ## Reference
 
-https://github.com/sinsoku/pretty_validation
+The following code based on https://github.com/sinsoku/pretty_validation. See the file headers for detail informations.
