@@ -23,7 +23,7 @@ Or install it yourself as:
 ## Usage
 
 1. Run `validation:generate` task
-2. Type a number you would like to generate validation
+2. Type a number that you would like to generate validation
 ```shell
 % rails validation:generate
 [warning] If you generate validation, model files will be overwritten.
